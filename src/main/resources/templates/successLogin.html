@@ -8,7 +8,11 @@
 
 <body>
 
-<p>Beléptél!</p>
+<ul data-th-each="u : ${users}">
+    <li>
+        <a data-th-href="@{/admin/{userId}(userId=${u.id})}" data-th-text="${u.id}"></a>
+    </li>
+</ul>
 
 </body>
 

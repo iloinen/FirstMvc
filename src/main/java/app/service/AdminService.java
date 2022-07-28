@@ -1,29 +1,34 @@
 package app.service;
 
+import app.model.AppUser;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class AdminService {
 
-    private Map<String, String> registeredUsers;
+    @Value("${custom.username}")
+    private String username;
 
-    public AdminService() {
-        registeredUsers = new HashMap<>();
-    }
+    @Value("${custom.userPassword}")
+    private String pw;
+
+    public AdminService() {}
 
     public boolean isCorrect(String username, String password) {
-        return username.equals("admin") && password.equals("abc123");
+        return username.equals(this.username) && password.equals(this.pw);
     }
 
-    public void register(String username, String pass) {
-        registeredUsers.put(username, pass);
-    }
+    public List<AppUser> loadUsers() {
+        List<AppUser> users = new ArrayList<>();
 
-    public boolean isRegisteredOk(String username, String pass) {
-        return registeredUsers.get(username).equals(pass);
+        users.add(new AppUser(33, "Béla", "bela"));
+        users.add(new AppUser(66, "Jukundusz", "jukundusz"));
+
+        return users;
     }
 
 }

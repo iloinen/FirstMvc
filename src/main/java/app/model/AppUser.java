@@ -3,12 +3,24 @@ package app.model;
 // később adatbázis-tábla lesz
 public class AppUser {
 
+    private long id;
     private String username;
     private String password;
 
-    public AppUser(String username, String password) {
+    public AppUser() {}
+
+    public AppUser(long id, String username, String password) {
+        this.id = id;
         this.username = username;
         this.password = password;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -27,4 +39,8 @@ public class AppUser {
         this.password = password;
     }
 
+    @Override
+    public String toString() {
+        return "" + id;
+    }
 }
